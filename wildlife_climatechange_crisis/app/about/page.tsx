@@ -9,7 +9,7 @@ export default function AboutUs() {
     {
       name: "Abdullah",
       role: "Full-Stack Developer",
-      image: "/Abdullah.png",
+      image: "/abdullah.png",
       linkedin: "https://www.linkedin.com/in/abdullahanwar3783/",
       overview:
           "I am a 2nd Computer Science student at UofC, participating in various hackathons and case competitions. I have hands-on experience working on projects with different teams and serve as a software developer at BMERIT Club.",
@@ -17,10 +17,10 @@ export default function AboutUs() {
     {
       name: "Isaiah",
       role: "Lead Developer",
-      image: "/Isaiah.png",
+      image: "/isaiah.png",
       linkedin: "https://www.linkedin.com/in/isaiah-a-2001/",
       overview:
-          "I am a 4th year student at UofC studying Software Engineering, with experience in multiple hackathons and internships. I am preparing to start my new job and applying the skills gained during my university and internships.",
+      "I am a 4th-year student at UofC studying Software Engineering, with fullstack web development experience gained through multiple hackathons and internships. I am preparing to start my new grad job and apply the skills I've gained through my university studies and internships.",
     },
     {
       name: "Saif",
@@ -33,7 +33,7 @@ export default function AboutUs() {
     {
       name: "Vraj",
       role: "Front-end Developer",
-      image: "/Vraj.png",
+      image: "/vraj.png",
       linkedin: "https://www.linkedin.com/in/vraj-d-b1769a278/",
       overview:
           "I am a 2nd Computer Science student at UofC, participating in hackathons and case competitions. I have gained hands-on experience by working on projects with different members.",
