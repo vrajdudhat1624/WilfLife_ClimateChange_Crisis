@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { formatDistanceToNow } from "date-fns"
+// import { format, formatDistance, subDays } from 'date-fns'
 import { MessageCircle, ThumbsUp, Award, Bookmark, Share2, MoreHorizontal } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -35,7 +35,8 @@ export function PostCard({ post, onReply, onReact }: PostCardProps) {
               </Badge>
             )}
             <span className="text-sm text-muted-foreground">
-              {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
+              {/* {formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true })
+} */}3 days ago
             </span>
           </div>
           <h4 className="text-lg font-semibold mt-2">{post.title}</h4>
