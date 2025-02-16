@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { useState, useEffect } from "react"
-import { Icon } from "leaflet"
-import "leaflet/dist/leaflet.css"
-import { AnimalPopup } from "../components/AnimalPopup"
 import owl from "@/public/owl.jpeg"
 import caribou from "@/public/caribou.jpeg"
 import murrelet from "@/public/murrelet.avif"
@@ -175,13 +172,13 @@ export default function Map() {
     }
   }
 
-  const createIcon = (emoji: string) =>
-      new Icon({
-        iconUrl: `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
-        popupAnchor: [0, -16],
-      })
+  // const createIcon = (emoji: string) =>
+  //     new Icon({
+  //       iconUrl: `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`,
+  //       iconSize: [32, 32],
+  //       iconAnchor: [16, 16],
+  //       popupAnchor: [0, -16],
+  //     })
 
   // Get emoji based on event type
   const getEventEmoji = (eventType: string): string => {

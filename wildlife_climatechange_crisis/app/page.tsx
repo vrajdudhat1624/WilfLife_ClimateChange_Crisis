@@ -125,6 +125,24 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* Call to Action */}
+        <section className="py-20 bg-green-800 bg-opacity-20">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Make a Difference Today
+            </h2>
+            <p className="text-xl mb-8 text-gray-300">
+              Every action counts in preserving BC&apos;s unique ecosystems.
+            </p>
+            <Link
+              href="/discuss"
+              className="bg-white text-green-800 font-bold py-3 px-8 rounded-full inline-flex items-center hover:bg-green-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Join the Discussion
+              <ArrowRight className="ml-2" size={20} />
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );
