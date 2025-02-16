@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet"
 import { Icon } from "leaflet"
 import "leaflet/dist/leaflet.css"
+import { AnimalPopup } from "../components/AnimalPopup"
 
 // Mock data for animal locations in British Columbia
 const animals = [
@@ -16,6 +17,7 @@ const animals = [
     climate_vulnerability: "High",
     fact: "Grizzly bears are losing habitat due to climate change.",
     emoji: "🐻",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Grizzlybear55.jpg/640px-Grizzlybear55.jpg",
   },
   {
     id: 2,
@@ -26,6 +28,8 @@ const animals = [
     climate_vulnerability: "Medium",
     fact: "Orcas are affected by changes in salmon populations due to warming waters.",
     emoji: "🐳",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/640px-Killerwhales_jumping.jpg",
   },
   {
     id: 3,
@@ -36,6 +40,7 @@ const animals = [
     climate_vulnerability: "High",
     fact: "Spirit bears are unique to coastal British Columbia and are threatened by habitat loss.",
     emoji: "🐻‍❄️",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Kermode_Bear.jpg/640px-Kermode_Bear.jpg",
   },
   {
     id: 4,
@@ -46,6 +51,8 @@ const animals = [
     climate_vulnerability: "High",
     fact: "Salmon populations are declining due to warming waters and changes in ocean conditions.",
     emoji: "🐟",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Salmo_salar_GLERL_1.jpg/640px-Salmo_salar_GLERL_1.jpg",
   },
   {
     id: 5,
@@ -56,6 +63,8 @@ const animals = [
     climate_vulnerability: "Very High",
     fact: "One of the rarest mammals in North America, threatened by habitat loss and climate change.",
     emoji: "🐹",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Marmota_vancouverensis_1.jpg/640px-Marmota_vancouverensis_1.jpg",
   },
 ]
 
@@ -90,7 +99,7 @@ export default function Map() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">British Columbia Wildlife Tracker</h1>
       <div className="h-[600px] relative border-4 border-forest-green rounded-lg overflow-hidden">
-        <MapContainer center={[53, -126]} zoom={3} style={{ height: "50%", width: "50%" }} zoomControl={false}>
+        <MapContainer center={[53, -126]} zoom={5} style={{ height: "100%", width: "100%" }} zoomControl={false}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -99,12 +108,7 @@ export default function Map() {
           {animals.map((animal) => (
             <Marker key={animal.id} position={[animal.lat, animal.lng]} icon={createIcon(animal.emoji)}>
               <Popup>
-                <h3 className="font-bold">
-                  {animal.name} {animal.emoji}
-                </h3>
-                <p>Status: {animal.status}</p>
-                <p>Climate Vulnerability: {animal.climate_vulnerability}</p>
-                <p>{animal.fact}</p>
+                <AnimalPopup {...animal} />
               </Popup>
             </Marker>
           ))}
@@ -148,7 +152,7 @@ export default function Map() {
           ))}
         </div>
         <div>
-          <h3 className="font-semibold mb-2">Climate Events</h3>
+          <h3 className="font-semibold mb-2">Climate Events Legend</h3>
           {climateEvents.map((event) => (
             <div key={event.id} className="flex items-center mb-2">
               <span className="text-2xl mr-2">{event.emoji}</span>
