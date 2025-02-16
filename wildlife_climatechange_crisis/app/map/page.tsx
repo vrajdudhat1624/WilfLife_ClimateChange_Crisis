@@ -1,6 +1,5 @@
 "use client"
 import { useState, useEffect } from "react"
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet"
 import { Icon } from "leaflet"
 import "leaflet/dist/leaflet.css"
 import { AnimalPopup } from "../components/AnimalPopup"
@@ -12,7 +11,11 @@ import whale from "@/public/whale.jpeg"
 import bear from "@/public/Bear.jpeg"
 import panda from "@/public/panda.jpeg"
 import marmot from "@/public/marmot.png"
+import dynamic from "next/dynamic";
 
+const MapComponent = dynamic(() => import("../components/MapComponent"), {
+  ssr: false,
+});
 // Existing animals array remains the same
 const animals = [
   {
@@ -201,44 +204,8 @@ export default function Map() {
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6">British Columbia Wildlife Tracker</h1>
         <div className="h-[600px] relative border-4 border-forest-green rounded-lg overflow-hidden">
-          <MapContainer center={[53, -126]} zoom={5} style={{ height: "100%", width: "100%" }} zoomControl={false}>
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            <ZoomControl position="bottomright" />
+        <MapComponent animals={animals} climateEvents={climateEvents} year={year} />
 
-            {/* Animal Markers */}
-            {animals.map((animal) => (
-                <Marker key={animal.id} position={[animal.lat, animal.lng]} icon={createIcon(animal.emoji)}>
-                  <Popup>
-                    <AnimalPopup {...animal} />
-                  </Popup>
-                </Marker>
-            ))}
-
-            {/* Climate Event Markers */}
-            {climateEvents
-                .filter((event) => Number.parseInt(event.Year) <= year)
-                .map((event, index) => (
-                    <Marker
-                        key={`${event["Event Name"]}-${index}`}
-                        position={[Number.parseFloat(event.Latitude), Number.parseFloat(event.Longitude)]}
-                        icon={createIcon(getEventEmoji(event["Event Type"]))}
-                    >
-                      <Popup>
-                        <div className="p-2">
-                          <h3 className="font-bold">
-                            {event["Event Name"]} {getEventEmoji(event["Event Type"])}
-                          </h3>
-                          <p className="text-sm">Type: {event["Event Type"]}</p>
-                          <p className="text-sm">Year: {event.Year}</p>
-                          <p className="text-sm mt-2">{event.Impact}</p>
-                        </div>
-                      </Popup>
-                    </Marker>
-                ))}
-          </MapContainer>
         </div>
 
         {/* Year Slider */}
