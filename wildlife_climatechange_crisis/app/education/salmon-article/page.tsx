@@ -69,7 +69,7 @@ export default function SalmonArticle() {
 
           <div className="mb-8 relative h-64 rounded-lg overflow-hidden">
             <Image
-              src="/placeholder.svg?height=300&width=800"
+              src="/FishToxic.webp?height=300&width=800"
               alt="Salmon swimming upstream"
               layout="fill"
               objectFit="cover"
