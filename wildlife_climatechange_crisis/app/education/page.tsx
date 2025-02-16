@@ -75,7 +75,7 @@ export default function EducationHub() {
             <CardHeader>
               <div className="relative h-48 rounded-t-lg overflow-hidden mb-4">
                 <Image
-                  src="/placeholder.svg?height=200&width=400"
+                  src="/FishToxic.webp?height=200&width=400"
                   alt="Salmon Migration"
                   layout="fill"
                   objectFit="cover"

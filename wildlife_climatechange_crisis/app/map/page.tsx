@@ -1,20 +1,19 @@
 "use client"
-import { StaticImageData } from "next/image"
-import owl from "@/public/owl.jpeg"
-import caribou from "@/public/caribou.jpeg"
-import murrelet from "@/public/murrelet.avif"
-import salmon from "@/public/salmon.jpg"
-import whale from "@/public/whale.jpeg"
-import bear from "@/public/bear.jpeg"
-import panda from "@/public/panda.jpeg"
-import marmot from "@/public/marmot.png"
 import { useState, useEffect } from "react"
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet"
 import { Icon } from "leaflet"
 import "leaflet/dist/leaflet.css"
 import { AnimalPopup } from "../components/AnimalPopup"
+import owl from "@/public/owl.jpeg"
+import caribou from "@/public/caribou.jpeg"
+import murrelet from "@/public/murrelet.avif"
+import salmon from "@/public/salmon.jpg"
+import whale from "@/public/whale.jpeg"
+import bear from "@/public/Bear.jpeg"
+import panda from "@/public/panda.jpeg"
+import marmot from "@/public/marmot.png"
 
-// Mock data for animal locations in British Columbia
+// Existing animals array remains the same
 const animals = [
   {
     id: 1,
@@ -65,7 +64,7 @@ const animals = [
     emoji: "🐟",
     image: salmon,
   },
-  
+
   {
     id: 5,
     name: "Vancouver Island Marmot",
@@ -113,106 +112,176 @@ const animals = [
     fact: "Old-growth forest dependent, threatened by logging and climate-induced changes to marine food webs.",
     emoji: "🐦",
     image:
-      murrelet,
+    murrelet,
   },
 ]
 
-// Climate events data
-const climateEvents = [
-  { id: 1, name: "Wildfires", lat: 53.7, lng: -124.5, year: 2030, emoji: "🔥" },
-  { id: 2, name: "Drought", lat: 52.3, lng: -122.8, year: 2035, emoji: "☀️" },
-  { id: 3, name: "Sea Level Rise", lat: 49.2, lng: -123.1, year: 2040, emoji: "🌊" },
-]
+// Interface for climate events from CSV
+interface ClimateEvent {
+  Year: string
+  "Event Type": string
+  "Event Name": string
+  Latitude: string
+  Longitude: string
+  Impact: string
+}
 
 export default function Map() {
-  const [year, setYear] = useState(2025)
+  const [year, setYear] = useState(1990)
   const [isMounted, setIsMounted] = useState(false)
+  const [climateEvents, setClimateEvents] = useState<ClimateEvent[]>([])
+  const [yearRange, setYearRange] = useState({ min: 1990, max: 2023 })
 
   useEffect(() => {
     setIsMounted(true)
+    fetchClimateEvents()
   }, [])
 
+  const fetchClimateEvents = async () => {
+    try {
+      const response = await fetch(
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bc_natural_disasters_1990s_present-W6yzid7qzWDTMoDTt7qx2EKPg4ByBA.csv",
+      )
+      const text = await response.text()
+
+      // Parse CSV
+      const rows = text.split("\n")
+      const headers = rows[0].split(",")
+      const data = rows
+          .slice(1)
+          .map((row) => {
+            const values = row.split(",")
+            return headers.reduce((obj: any, header, index) => {
+              obj[header.trim()] = values[index]?.trim()
+              return obj
+            }, {})
+          })
+          .filter((event) => event.Year && event.Latitude && event.Longitude)
+
+      // Update year range
+      const years = data.map((event) => Number.parseInt(event.Year))
+      const min = Math.min(...years)
+      const max = Math.max(...years)
+      setYearRange({ min, max })
+      setYear(min) // Start at earliest year
+
+      setClimateEvents(data)
+    } catch (error) {
+      console.error("Error fetching climate events:", error)
+    }
+  }
+
   const createIcon = (emoji: string) =>
-    new Icon({
-      iconUrl: `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`,
-      iconSize: [32, 32],
-      iconAnchor: [16, 16],
-      popupAnchor: [0, -16],
-    })
+      new Icon({
+        iconUrl: `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, -16],
+      })
+
+  // Get emoji based on event type
+  const getEventEmoji = (eventType: string): string => {
+    const typeMap: { [key: string]: string } = {
+      Flood: "🌊",
+      Wildfire: "🔥",
+      Drought: "☀️",
+      Storm: "⛈️",
+      Landslide: "⛰️",
+      Earthquake: "🌋",
+      "Heat Wave": "🌡️",
+    }
+    return typeMap[eventType] || "⚠️"
+  }
 
   if (!isMounted) {
     return null
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">British Columbia Wildlife Tracker</h1>
-      <div className="h-[600px] relative border-4 border-forest-green rounded-lg overflow-hidden">
-        <MapContainer center={[53, -126]} zoom={5} style={{ height: "100%", width: "100%" }} zoomControl={false}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          <ZoomControl position="bottomright" />
-          {animals.map((animal) => (
-            <Marker key={animal.id} position={[animal.lat, animal.lng]} icon={createIcon(animal.emoji)}>
-              <Popup>
-                <AnimalPopup {...animal} />
-              </Popup>
-            </Marker>
-          ))}
-          {climateEvents
-            .filter((event) => event.year <= year)
-            .map((event) => (
-              <Marker key={event.id} position={[event.lat, event.lng]} icon={createIcon(event.emoji)}>
-                <Popup>
-                  <h3 className="font-bold">
-                    {event.name} {event.emoji}
-                  </h3>
-                  <p>Year: {event.year}</p>
-                </Popup>
-              </Marker>
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6">British Columbia Wildlife Tracker</h1>
+        <div className="h-[600px] relative border-4 border-forest-green rounded-lg overflow-hidden">
+          <MapContainer center={[53, -126]} zoom={5} style={{ height: "100%", width: "100%" }} zoomControl={false}>
+            <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <ZoomControl position="bottomright" />
+
+            {/* Animal Markers */}
+            {animals.map((animal) => (
+                <Marker key={animal.id} position={[animal.lat, animal.lng]} icon={createIcon(animal.emoji)}>
+                  <Popup>
+                    <AnimalPopup {...animal} />
+                  </Popup>
+                </Marker>
             ))}
-        </MapContainer>
-      </div>
-      <div className="mt-6">
-        <label htmlFor="year-slider" className="block mb-2 font-semibold">
-          Climate Change Timeline
-        </label>
-        <input
-          type="range"
-          id="year-slider"
-          min="2025"
-          max="2050"
-          value={year}
-          onChange={(e) => setYear(Number.parseInt(e.target.value))}
-          className="w-full"
-        />
-        <p className="text-center mt-2">Year: {year}</p>
-      </div>
-      <div className="mt-6 grid grid-cols-2 gap-4">
-        <div>
-          <h3 className="font-semibold mb-2">Wildlife Legend</h3>
-          {animals.map((animal) => (
-            <div key={animal.id} className="flex items-center mb-2">
-              <span className="text-2xl mr-2">{animal.emoji}</span>
-              <span>{animal.name}</span>
-            </div>
-          ))}
+
+            {/* Climate Event Markers */}
+            {climateEvents
+                .filter((event) => Number.parseInt(event.Year) <= year)
+                .map((event, index) => (
+                    <Marker
+                        key={`${event["Event Name"]}-${index}`}
+                        position={[Number.parseFloat(event.Latitude), Number.parseFloat(event.Longitude)]}
+                        icon={createIcon(getEventEmoji(event["Event Type"]))}
+                    >
+                      <Popup>
+                        <div className="p-2">
+                          <h3 className="font-bold">
+                            {event["Event Name"]} {getEventEmoji(event["Event Type"])}
+                          </h3>
+                          <p className="text-sm">Type: {event["Event Type"]}</p>
+                          <p className="text-sm">Year: {event.Year}</p>
+                          <p className="text-sm mt-2">{event.Impact}</p>
+                        </div>
+                      </Popup>
+                    </Marker>
+                ))}
+          </MapContainer>
         </div>
-        <div>
-          <h3 className="font-semibold mb-2">Climate Events Legend</h3>
-          {climateEvents.map((event) => (
-            <div key={event.id} className="flex items-center mb-2">
-              <span className="text-2xl mr-2">{event.emoji}</span>
-              <span>
-                {event.name} (appears in {event.year})
-              </span>
+
+        {/* Year Slider */}
+        <div className="mt-6">
+          <label htmlFor="year-slider" className="block mb-2 font-semibold">
+            Natural Disasters Timeline
+          </label>
+          <input
+              type="range"
+              id="year-slider"
+              min={yearRange.min}
+              max={yearRange.max}
+              value={year}
+              onChange={(e) => setYear(Number.parseInt(e.target.value))}
+              className="w-full"
+          />
+          <p className="text-center mt-2">Year: {year}</p>
+        </div>
+
+        {/* Legends */}
+        <div className="mt-6 grid grid-cols-2 gap-4">
+          <div>
+            <h3 className="font-semibold mb-2">Wildlife Legend</h3>
+            {animals.map((animal) => (
+                <div key={animal.id} className="flex items-center mb-2">
+                  <span className="text-2xl mr-2">{animal.emoji}</span>
+                  <span>{animal.name}</span>
+                </div>
+            ))}
+          </div>
+          <div>
+            <h3 className="font-semibold mb-2">Natural Disasters Legend</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {Object.entries(getEventEmoji("")).map(([type, emoji]) => (
+                  <div key={type} className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">{emoji}</span>
+                    <span>{type}</span>
+                  </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
   )
 }
 
