@@ -12,7 +12,7 @@ export default function AboutUs() {
       image: "/Abdullah.png",
       linkedin: "https://www.linkedin.com/in/abdullahanwar3783/",
       overview:
-        "I am a second-year computer science student at UofC, participating in various hackathons and case competitions. I have hands-on experience working on projects with different teams and serve as a software developer at BMERIT Club.",
+        "I am a Second-year Computer Science student at UofC, participating in various hackathons and case competitions. I have hands-on experience working on projects with different teams and serve as a software developer at BMERIT Club.",
     },
     {
       name: "Isaiah",
@@ -20,7 +20,7 @@ export default function AboutUs() {
       image: "/Isaiah.png",
       linkedin: "https://www.linkedin.com/in/isaiah-a-2001/",
       overview:
-        "I am a recent graduate of UofC studying software engineering, with experience in multiple hackathons and internships. I am preparing to start my new job and applying the skills gained during my university and internships.",
+        "I am a 4th year student at UofC studying Software Engineering, with experience in multiple hackathons and internships. I am preparing to start my new job and applying the skills gained during my university and internships.",
     },
     {
       name: "Saif",
@@ -28,7 +28,7 @@ export default function AboutUs() {
       image: "/Saif.png",
       linkedin: "https://www.linkedin.com/in/saif-ullah-anwar-b49156278/",
       overview:
-        "I am a second-year computer science student at UofC, participating in hackathons and case competitions. I have experience working as a data analyst, visualizing and analyzing data.",
+        "I am a Second-year Computer Science student at UofC, participating in hackathons and case competitions. I have experience working as a data analyst, visualizing and analyzing data.",
     },
     {
       name: "Vraj",
@@ -36,7 +36,7 @@ export default function AboutUs() {
       image: "/Vraj.png",
       linkedin: "https://www.linkedin.com/in/vraj-d-b1769a278/",
       overview:
-        "I am a second-year computer science student at UofC, participating in hackathons and case competitions. I have gained hands-on experience by working on projects with different members.",
+        "I am a Second-year Computer Science student at UofC, participating in hackathons and case competitions. I have gained hands-on experience by working on projects with different members.",
     },
     {
       name: "Zohair",
@@ -44,7 +44,7 @@ export default function AboutUs() {
       image: "/zohair.JPG",
       linkedin: "https://www.linkedin.com/in/zohairomar/",
       overview:
-        "Third-year computer science student at UofC, previously at UBC for two years. Passionate about hackathons, data analytics, and developing innovative solutions.",
+        "I am a third-year Computer Science student at UofC, previously at UBC for two years. Passionate about hackathons, data analytics, and developing innovative solutions.",
     },
   ]
 
