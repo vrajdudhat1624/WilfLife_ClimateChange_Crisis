@@ -12,7 +12,7 @@ export default function AboutUs() {
       image: "/Abdullah.png",
       linkedin: "https://www.linkedin.com/in/abdullahanwar3783/",
       overview:
-        "I am a Second-year Computer Science student at UofC, participating in various hackathons and case competitions. I have hands-on experience working on projects with different teams and serve as a software developer at BMERIT Club.",
+        "I am a 2nd Computer Science student at UofC, participating in various hackathons and case competitions. I have hands-on experience working on projects with different teams and serve as a software developer at BMERIT Club.",
     },
     {
       name: "Isaiah",
@@ -28,7 +28,7 @@ export default function AboutUs() {
       image: "/Saif.png",
       linkedin: "https://www.linkedin.com/in/saif-ullah-anwar-b49156278/",
       overview:
-        "I am a Second-year Computer Science student at UofC, participating in hackathons and case competitions. I have experience working as a data analyst, visualizing and analyzing data.",
+        "I am a 2nd Computer Science student at UofC, participating in hackathons and case competitions. I have experience working as a data analyst, visualizing and analyzing data.",
     },
     {
       name: "Vraj",
@@ -36,7 +36,7 @@ export default function AboutUs() {
       image: "/Vraj.png",
       linkedin: "https://www.linkedin.com/in/vraj-d-b1769a278/",
       overview:
-        "I am a Second-year Computer Science student at UofC, participating in hackathons and case competitions. I have gained hands-on experience by working on projects with different members.",
+        "I am a 2nd Computer Science student at UofC, participating in hackathons and case competitions. I have gained hands-on experience by working on projects with different members.",
     },
     {
       name: "Zohair",
@@ -44,7 +44,7 @@ export default function AboutUs() {
       image: "/zohair.JPG",
       linkedin: "https://www.linkedin.com/in/zohairomar/",
       overview:
-        "I am a third-year Computer Science student at UofC, previously at UBC for two years. Passionate about hackathons, data analytics, and developing innovative solutions.",
+        "I am a 3rd Computer Science student at UofC, previously at UBC for two years. Passionate about hackathons, data analytics, and developing innovative solutions.",
     },
   ]
 
