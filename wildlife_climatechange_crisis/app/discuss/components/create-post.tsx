@@ -10,14 +10,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-interface CreatePostProps {
-  onSubmit: (post: { title: string; content: string; category: string }) => void
+type CreatePostProps = {
+  onSubmit: (post: { title: string; content: string; category: "general" | "expert_qa" | "user_story" }) => void
 }
 
 export function CreatePost({ onSubmit }: CreatePostProps) {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [category, setCategory] = useState("general")
+  const [category, setCategory] = useState<"general" | "expert_qa" | "user_story">("general")
   const [isPreview, setIsPreview] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,7 +46,7 @@ export function CreatePost({ onSubmit }: CreatePostProps) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
-            <Select value={category} onValueChange={setCategory}>
+            <Select value={category} onValueChange={(value) => setCategory(value as "general" | "expert_qa" | "user_story")}>
               <SelectTrigger>
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
