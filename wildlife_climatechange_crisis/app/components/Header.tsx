@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { MapPin, BookOpen, MessageSquare, AlertTriangle } from "lucide-react"
+import Link from "next/link";
+import { MapPin, BookOpen, MessageSquare, AlertTriangle } from "lucide-react";
 
 export default function Header() {
   return (
@@ -11,25 +11,37 @@ export default function Header() {
         <nav>
           <ul className="flex space-x-6">
             <li>
-              <Link href="/map" className="flex items-center hover:text-green-300">
+              <Link
+                href="/map"
+                className="flex items-center hover:text-green-300"
+              >
                 <MapPin className="mr-2" size={18} />
                 Tracker
               </Link>
             </li>
             <li>
-              <Link href="/education" className="flex items-center hover:text-green-300">
+              <Link
+                href="/education"
+                className="flex items-center hover:text-green-300"
+              >
                 <BookOpen className="mr-2" size={18} />
                 Learn
               </Link>
             </li>
             <li>
-              <Link href="/discuss" className="flex items-center hover:text-green-300">
+              <Link
+                href="/discuss"
+                className="flex items-center hover:text-green-300"
+              >
                 <MessageSquare className="mr-2" size={18} />
                 Discuss
               </Link>
             </li>
             <li>
-              <Link href="/awareness" className="flex items-center hover:text-green-300">
+              <Link
+                href="/awareness"
+                className="flex items-center hover:text-green-300"
+              >
                 <AlertTriangle className="mr-2" size={18} />
                 Awareness
               </Link>
@@ -38,6 +50,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  )
+  );
 }
-
