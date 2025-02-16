@@ -8,7 +8,7 @@ export default function AboutUs() {
   const teamMembers = [
     {
       name: "Abdullah",
-      role: "Full-Stack Developer",
+      role: "Developer",
       image: "/Abdullah.png",
       linkedin: "https://www.linkedin.com/in/abdullahanwar3783/",
       overview:
@@ -32,7 +32,7 @@ export default function AboutUs() {
     },
     {
       name: "Vraj",
-      role: "Front-end Developer",
+      role: "Developer",
       image: "/Vraj.png",
       linkedin: "https://www.linkedin.com/in/vraj-d-b1769a278/",
       overview:
