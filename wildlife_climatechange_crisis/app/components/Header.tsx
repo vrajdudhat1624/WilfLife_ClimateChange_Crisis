@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { MapPin, BookOpen, MessageSquare, AlertTriangle } from "lucide-react";
+import Link from "next/link"
+import { MapPin, BookOpen, MessageSquare, AlertTriangle } from "lucide-react"
 
 export default function Header() {
   return (
@@ -29,7 +29,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/awareness" className="flex items-center hover:text-green-300 transition-transform transform hover:scale-105">
+              <Link href="/awareness" className="flex items-center hover:text-green-300">
                 <AlertTriangle className="mr-2" size={18} />
                 Awareness
               </Link>
