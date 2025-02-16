@@ -56,27 +56,12 @@ export default function AboutUs() {
           <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
           <p className="text-lg mb-4">
             At <span className="font-bold">WildBC</span>, we are dedicated to preserving British Columbia&apos;s diverse
-            wildlife. Our platform was developed during the Wildlife in Crisis BC hackathon, where we came together to
+            wildlife. Our platform was developed during <a className="underline" href="https://calgaryhacks-2025.devpost.com/"> CalgaryHack 2025</a>, where we came together to
             address pressing challenges in conservation.
           </p>
           <p className="text-lg mb-4">
-            Our mission is to raise awareness about endangered species, track wildlife movements in British Columbia, and
-            educate the public on the effects of climate change on our local ecosystems. Through real-time tracking,
+            Our goal is to raise awareness about threaten species, and educate the public on the effects of climate change on our local ecosystems. Through gamification,
             community engagement, and interactive learning, we empower individuals to make a difference.
-          </p>
-          <p className="text-lg mb-4">
-            We aim to bridge the gap between conservation efforts and public awareness by leveraging data, technology, and
-            a strong network of conservationists and volunteers. Our platform provides:
-          </p>
-          <ul className="list-disc list-inside mb-4 text-lg">
-            <li> Real-time tracking of endangered species</li>
-            <li> Data-driven insights on climate impact</li>
-            <li> Community discussions & awareness programs</li>
-            <li> Interactive maps to visualize wildlife movements</li>
-          </ul>
-          <p className="text-lg">
-            By fostering collaboration between scientists, conservationists, and the public, we strive to create a future
-            where wildlife thrives alongside human progress.
           </p>
         </section>
 
@@ -97,7 +82,7 @@ export default function AboutUs() {
                                 src={member.image || "/placeholder.svg"}
                                 alt={`Team member ${member.name}`}
                                 fill
-                                className="object-cover rounded-full"
+                                className="object-cover object-center rounded-full"
                             />
                         ) : (
                             <div className="w-full h-full bg-gray-100 flex items-center justify-center">
@@ -118,17 +103,6 @@ export default function AboutUs() {
               ))}
             </div>
           </div>
-        </section>
-
-        {/* Commitment Section - White Background */}
-        <section className="px-4 py-12">
-          <h2 className="text-2xl font-semibold mb-4">Our Commitment</h2>
-          <p className="text-lg">
-            Through our platform, we aim to raise awareness about the impact of climate change on British Columbia&apos;s
-            wildlife, provide real-time tracking of endangered species, offer educational resources, and facilitate
-            community discussions. We believe that by working together, we can make a significant difference in preserving
-            our natural heritage for future generations.
-          </p>
         </section>
       </div>
   )
