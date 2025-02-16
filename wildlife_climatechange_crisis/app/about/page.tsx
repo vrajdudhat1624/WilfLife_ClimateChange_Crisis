@@ -56,7 +56,7 @@ export default function AboutUs() {
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
         <p className="text-lg mb-4">
-          At <span className="font-bold">Wildlife in Crisis</span>, we are dedicated to preserving British Columbia&apos;s diverse wildlife.
+          At <span className="font-bold">WildBC</span>, we are dedicated to preserving British Columbia&apos;s diverse wildlife.
           Our platform was developed during the Wildlife in Crisis BC hackathon, where we came together to address pressing challenges in conservation.
         </p>
         <p className="text-lg mb-4">
