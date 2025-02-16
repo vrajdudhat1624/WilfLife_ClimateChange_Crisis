@@ -1,5 +1,13 @@
 "use client"
-
+import { StaticImageData } from "next/image"
+import owl from "@/public/owl.jpeg"
+import caribou from "@/public/caribou.jpeg"
+import murrelet from "@/public/murrelet.avif"
+import salmon from "@/public/salmon.jpg"
+import whale from "@/public/whale.jpeg"
+import bear from "@/public/bear.jpeg"
+import panda from "@/public/panda.jpeg"
+import marmot from "@/public/marmot.png"
 import { useState, useEffect } from "react"
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet"
 import { Icon } from "leaflet"
@@ -17,7 +25,9 @@ const animals = [
     climate_vulnerability: "High",
     fact: "Grizzly bears are losing habitat due to climate change.",
     emoji: "🐻",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Grizzlybear55.jpg/640px-Grizzlybear55.jpg",
+    image: bear,
+
+
   },
   {
     id: 2,
@@ -28,8 +38,9 @@ const animals = [
     climate_vulnerability: "Medium",
     fact: "Orcas are affected by changes in salmon populations due to warming waters.",
     emoji: "🐳",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/640px-Killerwhales_jumping.jpg",
+    image: whale,
+
+
   },
   {
     id: 3,
@@ -40,20 +51,21 @@ const animals = [
     climate_vulnerability: "High",
     fact: "Spirit bears are unique to coastal British Columbia and are threatened by habitat loss.",
     emoji: "🐻‍❄️",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Kermode_Bear.jpg/640px-Kermode_Bear.jpg",
+    image: panda,
+
   },
   {
     id: 4,
     name: "Salmon",
-    lat: 51.2,
-    lng: -126.8,
+    lat: 49.5, // Moving closer to the ocean
+    lng: -130.0, // Further offshore in the Pacific Ocean
     status: "Varies by species",
     climate_vulnerability: "High",
     fact: "Salmon populations are declining due to warming waters and changes in ocean conditions.",
     emoji: "🐟",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Salmo_salar_GLERL_1.jpg/640px-Salmo_salar_GLERL_1.jpg",
+    image: salmon,
   },
+  
   {
     id: 5,
     name: "Vancouver Island Marmot",
@@ -63,8 +75,45 @@ const animals = [
     climate_vulnerability: "Very High",
     fact: "One of the rarest mammals in North America, threatened by habitat loss and climate change.",
     emoji: "🐹",
+    image: marmot,
+
+  },
+  {
+    id: 6,
+    name: "Northern Spotted Owl",
+    lat: 49.3,
+    lng: -121.7,
+    status: "Endangered",
+    climate_vulnerability: "High",
+    fact: "Habitat loss and competition from Barred Owls are major threats to this species.",
+    emoji: "🦉",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Marmota_vancouverensis_1.jpg/640px-Marmota_vancouverensis_1.jpg",
+    owl,
+  },
+  {
+    id: 7,
+    name: "Mountain Caribou",
+    lat: 52.1,
+    lng: -122.5,
+    status: "Endangered",
+    climate_vulnerability: "Very High",
+    fact: "Climate change is altering their habitat and food sources, leading to population declines.",
+    emoji: "🦌",
+    image:
+    caribou
+    ,
+  },
+  {
+    id: 8,
+    name: "Marbled Murrelet",
+    lat: 51.0,
+    lng: -127.5,
+    status: "Threatened",
+    climate_vulnerability: "Medium",
+    fact: "Old-growth forest dependent, threatened by logging and climate-induced changes to marine food webs.",
+    emoji: "🐦",
+    image:
+      murrelet,
   },
 ]
 
