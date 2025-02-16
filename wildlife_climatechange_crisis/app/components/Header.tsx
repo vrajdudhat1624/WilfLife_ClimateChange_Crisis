@@ -6,7 +6,7 @@ export default function Header() {
     <header className="bg-green-800 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          WildLife In Crisis
+          WildBC
         </Link>
         <nav>
           <ul className="flex space-x-6">
